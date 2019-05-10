@@ -1,0 +1,33 @@
+.background-image-holder {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover !important;
+  background-position: 50% 50% !important;
+  z-index: 0;
+  transition: opacity .3s linear;
+  -webkit-transition: opacity .3s linear;
+  opacity: 0;
+  background: #252525;
+}
+
+.background-image-holder:not([class*='col-']) {
+  width: 100%;
+}
+
+.background-image-holder.background--bottom {
+  background-position: 50% 100% !important;
+}
+
+.background-image-holder.background--top {
+  background-position: 50% 0% !important;
+}
+
+.image--light .background-image-holder {
+  background: none;
+}
+
+.background-image-holder img {
+  display: none;
+}
