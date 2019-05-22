@@ -3,7 +3,6 @@ const imageboy = () => {
   imageholders.forEach(holder => {
     const img = holder.children[0];
     const imgSrc = img.dataset.src;
-    holder.style.background = `url("${imgSrc})`;
     holder.style.backgroundPosition = `initial`;
     holder.style.opacity = `1`;
     holder.dataset.src = imgSrc;
