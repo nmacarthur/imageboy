@@ -6,6 +6,7 @@ const imageboy = () => {
     holder.style.background = `url("${imgSrc})`;
     holder.style.backgroundPosition = `initial`;
     holder.style.opacity = `1`;
+    holder.dataset.src = imgSrc;
   });
 };
 
