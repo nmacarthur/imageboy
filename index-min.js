@@ -1,1 +1,0 @@
-Object.defineProperty(exports,"__esModule",{value:!0});exports.imageboy=function(){document.querySelectorAll(".background-image-holder").forEach(function(e){var t=e.children[0].dataset.src;e.style.backgroundPosition="initial",e.style.opacity="1",e.dataset.src=t})};
