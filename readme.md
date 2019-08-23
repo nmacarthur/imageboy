@@ -8,9 +8,13 @@ Imageboy takes your images and wraps them in a container that resizes nicely.
 
 ## Usage
 
+After including the file, run `imageboy()` to replace your images.
+
 `<img data-replace src="..." alt="..." />`
 
-The data-replace tag will place the image within the responsive container. The default ratio is 16 / 9
+The data-replace tag will place the image within the responsive container.
+
+The default ratio is 16 / 9.
 
 `<img data-replace data-ratio="1/1" src="..." alt="..." />`
 
