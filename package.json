@@ -1,6 +1,6 @@
 {
   "name": "@nmacarthur/imageboy",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "dist/main.js",
   "scripts": {
@@ -8,6 +8,7 @@
     "prod": "gulp"
   },
   "author": "Nicholas MacArthur",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
