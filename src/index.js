@@ -46,7 +46,7 @@ const applyStyles = (object, styles) => {
   styleSheet.insertRule(`.${className}${phraseStyle(styles)}`);
 };
 
-const imageboy = () => {
+const imageboy = function(){
   const images = document.querySelectorAll('img[data-replace]');
   images.forEach(image => {
     const ratio = image.dataset.ratio ? eval(image.dataset.ratio) : 16 / 9;
@@ -86,4 +86,4 @@ const imageboy = () => {
       left: '0',
     });
   });
-};
+}();
