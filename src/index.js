@@ -1,18 +1,55 @@
-const applyStyles = (object, styles) => {
-  const array = Object.entries(styles);
-  array.map(style => {
-    const property = style[0];
-    const value = style[1];
-    object.style[property] = value;
+const randString = () =>
+  Math.random()
+    .toString(36)
+    .replace(/[^a-z]+/g, '')
+    .substring(2, 8) +
+  Math.random()
+    .toString(36)
+    .replace(/[^a-z]+/g, '')
+    .substring(2, 8);
+
+const phraseStyle = style => {
+  const keys = Object.keys(style);
+  const keyValue = keys.map(key => {
+    const kebabCaseKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    const value = `${style[key]}${typeof style[key] === 'number' ? 'px' : ''}`;
+
+    return `${kebabCaseKey}:${value};`;
   });
+
+  return `{ ${keyValue.join('')}}`;
+};
+
+const applyStyles = (object, styles) => {
+  const className = randString();
+
+  let styleSheet;
+  for (let i = 0; i < document.styleSheets.length; i++) {
+    if (document.styleSheets[i].CSSInJS) {
+      styleSheet = document.styleSheets[i];
+      console.log(styleSheet);
+      break;
+    }
+  }
+
+  if (!styleSheet) {
+    let style = document.createElement('style');
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(''));
+    document.head.appendChild(style);
+    styleSheet = style.sheet;
+    styleSheet.CSSInJS = true;
+    styleSheet.insertRule('.class { width:100%; }');
+  }
+
+  object.classList.add(className);
+  styleSheet.insertRule(`.${className}${phraseStyle(styles)}`);
 };
 
 const imageboy = () => {
   const images = document.querySelectorAll('img[data-replace]');
   images.forEach(image => {
     const ratio = image.dataset.ratio ? eval(image.dataset.ratio) : 16 / 9;
-    console.log(ratio < 1);
-    console.log(ratio > 1);
 
     const bgSize = ratio > 1 ? '100% auto' : 'auto 100%';
 
