@@ -5,7 +5,6 @@ var path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-
 module.exports = {
   entry: './src/index.js',
   mode: process.env.NODE_ENV,
@@ -14,7 +13,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: ['babel-loader'],
-      }
+      },
     ],
   },
   output: {
@@ -25,7 +24,8 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CompressionPlugin()
+    new CompressionPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimizer: [new UglifyJsPlugin()],
