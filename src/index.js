@@ -1,52 +1,6 @@
-const randString = () =>
-  Math.random()
-    .toString(36)
-    .replace(/[^a-z]+/g, '')
-    .substring(2, 8) +
-  Math.random()
-    .toString(36)
-    .replace(/[^a-z]+/g, '')
-    .substring(2, 8);
+const pocketStyles = require('pocket-styles');
 
-const phraseStyle = style => {
-  const keys = Object.keys(style);
-  const keyValue = keys.map(key => {
-    const kebabCaseKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-    const value = `${style[key]}${typeof style[key] === 'number' ? 'px' : ''}`;
-
-    return `${kebabCaseKey}:${value};`;
-  });
-
-  return `{ ${keyValue.join('')}}`;
-};
-
-const applyStyles = (object, styles) => {
-  const className = randString();
-
-  let styleSheet;
-  for (let i = 0; i < document.styleSheets.length; i++) {
-    if (document.styleSheets[i].CSSInJS) {
-      styleSheet = document.styleSheets[i];
-      console.log(styleSheet);
-      break;
-    }
-  }
-
-  if (!styleSheet) {
-    let style = document.createElement('style');
-    style.type = 'text/css';
-    style.appendChild(document.createTextNode(''));
-    document.head.appendChild(style);
-    styleSheet = style.sheet;
-    styleSheet.CSSInJS = true;
-    styleSheet.insertRule('.class { width:100%; }');
-  }
-
-  object.classList.add(className);
-  styleSheet.insertRule(`.${className}${phraseStyle(styles)}`);
-};
-
-const imageboy = function(){
+const imageboy = (function() {
   const images = document.querySelectorAll('img[data-replace]');
   images.forEach(image => {
     const ratio = image.dataset.ratio ? eval(image.dataset.ratio) : 16 / 9;
@@ -64,8 +18,8 @@ const imageboy = function(){
     container.appendChild(holder);
     holder.appendChild(imageClone);
 
-    applyStyles(container, { maxWidth: '100%' });
-    applyStyles(holder, {
+    pocketStyles.apply(container, { maxWidth: '100%' });
+    pocketStyles.apply(holder, {
       position: 'relative',
       overflow: 'hidden',
       width: '100%',
@@ -77,7 +31,7 @@ const imageboy = function(){
       backgroundSize: `${ratio > 1 ? '100% auto' : 'auto 100%'}`,
       backgroundPosition: '50% 50%',
     });
-    applyStyles(imageClone, {
+    pocketStyles.apply(imageClone, {
       position: 'absolute',
       display: 'none',
       top: '0',
@@ -86,4 +40,4 @@ const imageboy = function(){
       left: '0',
     });
   });
-}();
+})();
