@@ -1,6 +1,6 @@
 {
   "name": "@nmacarthur/imageboy",
-  "version": "0.1.8",
+  "version": "0.1.8.1",
   "description": "",
   "main": "dist/imageboy.js",
   "files": ["/dist"],
